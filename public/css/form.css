@@ -1,0 +1,61 @@
+/* form styles */
+
+.inp {
+	display: inline-block;
+	width: 100%;
+	border: 1px solid gray;
+	border-radius: 3px;
+	outline: 0;
+	height: 40px;
+	margin: 5px 0 30px;
+	padding: 10px;
+}
+.inp-img {
+	display: inline-block;
+	width: 100%;
+	outline: 0;
+	height: 40px;
+	margin: 5px 0 30px;
+	padding: 10px;
+}
+li{
+	list-style-type: none;
+}
+p{
+	line-height: 2rem;
+}
+label {
+	font-weight: 700;
+}
+
+/* button */
+.btn {
+	outline: 0;
+	color: aliceblue;
+	background: black;
+	padding: 8px 20px;
+	border: 1px solid;
+	border-radius: 3px;
+	margin: 40px 5px 10px 10px;
+}
+.btn:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+.btn , a{
+	text-decoration: none;
+}
+/* Image style */
+.imeg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+img {
+
+	width: 60vh;
+	border-radius: 5px;
+	margin-top: 30px ;
+}

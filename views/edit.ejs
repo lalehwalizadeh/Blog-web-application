@@ -1,0 +1,25 @@
+
+
+<%- include('partials/header.ejs') %>
+<div class="content">
+	<form class="new-form" action="/edit/<%= post.id %>" method="POST">
+	 
+		<label for="tit">Title:</label>
+		<input class="inp" type="text" name="title" id="tit" value="<%= post.title %>" required/>
+		<label for="dec"> Description:</label>
+		<textarea class="inp" name="description" id="dec" value="" required><%=post.description %></textarea>
+		<label for="file">Upload Image:
+			<input class="inp-img" type="file" id="file" name="img" accept="img/*">
+			<div class="imeg">
+				<img  id="file" src="/images/placeholder.jpg" alt="placeholder Image"></img>
+			</div>
+		</label>
+		<button type="submit" class="btn">Update</button>
+	</form>
+
+</div>
+
+
+
+
+<%- include('partials/footer.ejs') %>
