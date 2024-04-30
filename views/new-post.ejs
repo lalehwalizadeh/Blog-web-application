@@ -7,9 +7,9 @@
 		<label for="dec"> Description:</label>
 		<textarea class="inp" name="description" id="dec" required></textarea>
 		<label for="file">Upload Image:
-			<input class="inp-img" type="file" id="file" name="img" accept="img/*">
+			<input class="inp-img" type="file" onchange="display()" id="fileImage" name="img" accept="img/*" required>
 			<div class="imeg">
-				<img  id="imageDisplay" src= "/images/placeholder.jpg " %>" alt="placeholder Image"></img>
+				<img  id="pic" src= "/images/placeholder.jpg " alt="placeholder Image"></img>
 				
 			</div>
 		</label>
@@ -17,5 +17,21 @@
 	</form>
 
 </div>
-
+<script>
+	function display() {
+	  const fileInput = document.getElementById("fileImage");
+	  const image = document.getElementById("pic");
+  
+	  if (fileInput.files && fileInput.files[0]) {
+		const reader = new FileReader();
+  
+		reader.onload = function (e) {
+		  image.src = e.target.result;
+		};
+  
+		reader.readAsDataURL(fileInput.files[0]);
+	  }
+	}
+	
+  </script>
 <%- include('partials/footer.ejs') %>

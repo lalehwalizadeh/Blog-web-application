@@ -2,16 +2,16 @@
 
 <%- include('partials/header.ejs') %>
 <div class="content">
-	<form class="new-form" action="/edit/<%= post.id %>" method="POST">
+	<form class="new-form" action="/update/<%= post.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 	 
-		<label for="tit">Title:</label>
+		<label for="tit">Change Title:</label>
 		<input class="inp" type="text" name="title" id="tit" value="<%= post.title %>" required/>
-		<label for="dec"> Description:</label>
+		<label for="dec">Change Description:</label>
 		<textarea class="inp" name="description" id="dec" value="" required><%=post.description %></textarea>
-		<label for="file">Upload Image:
-			<input class="inp-img" type="file" id="file" name="img" accept="img/*">
+		<label for="file">Change Image:
+			<input class="inp-img" type="file" onchange="display()" id="fileImage" name="image" accept="img/*">
 			<div class="imeg">
-				<img  id="file" src="/images/placeholder.jpg" alt="placeholder Image"></img>
+				<img  id="pic" src="/images/<%=post.picture %>"  alt="your current Image"></img>
 			</div>
 		</label>
 		<button type="submit" class="btn">Update</button>
@@ -19,7 +19,23 @@
 
 </div>
 
-
+<script>
+	function display() {
+	  const fileInput = document.getElementById("fileImage");
+	  const image = document.getElementById("pic");
+  
+	  if (fileInput.files && fileInput.files[0]) {
+		const reader = new FileReader();
+  
+		reader.onload = function (e) {
+		  image.src = e.target.result;
+		};
+  
+		reader.readAsDataURL(fileInput.files[0]);
+	  }
+	}
+	
+  </script>
 
 
 <%- include('partials/footer.ejs') %>

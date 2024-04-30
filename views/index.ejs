@@ -1,6 +1,6 @@
 <%- include('partials/header.ejs') %>
-
-<h3>RECENT POSTS</h3>
+<link rel="stylesheet" href="/css/fonts/font.css" />
+<h3 class="title-post">RECENT POSTS</h3>
 <main>
 	<ul>
 		<% if(post.length >0){ post.forEach((element) => { %>
@@ -9,6 +9,7 @@
 				<h2><%= element.title %></h2>
 				<p><%= element.description %></p>
 				<div class="imeg">
+					
 					<% if(element.picture){ %>
 					<img src=" <%=element.picture %>" alt="picture" />
 					<% }else{ %>
@@ -16,13 +17,13 @@
 					<% } %>
 				</div>
 				<div class="content">
-					<a class="edit" href="/edit/<%= element.id %>" >Edit</a>
-
-					<!-- <form action="/edit/<%= element.id %>" method="GET">
+					<form class="form" action="/edit/<%= element.id %>" method="GET">
 						<button class="edit">Edit</button>
-					</form> -->
-					<form action="/delete/<%= element.id %>" method="POST">
-						<button class="delete" id="delete" type="submit">Delete</button>
+					</form>
+					<!-- <a class="edit" href="/edit/" >Edit</a> -->
+
+					<form class="form" action="/delete/<%= element.id %>?_method=DELETE" method="POST">
+						<button class="delete" id="delete">Delete</button>
 					</form>
 				</div>
 			</li>

@@ -1,3 +1,5 @@
+import methodOverride from 'method-override';
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import multer from 'multer';
@@ -19,14 +21,16 @@ const storage = multer.diskStorage({
 	},
 	filename: (req, file, cb) => {
 		console.log(file);
-		cb(null,file.fieldname,+'-'+ Date.now() + path.extname(file.originalname));
+		cb(null, Date.now() + path.extname(file.originalname));
 	},
 });
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 // middlewares:
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+// use method-override to use HTTP method instead of GET and POST:
+app.use(methodOverride('_method'));
 
 // parse JSON bodies (as sent by html form)
 app.use(bodyParser.json());
@@ -39,14 +43,14 @@ const year = date.getFullYear();
 let posts = [
 	{
 		title: 'butterfly',
-		description: 'it is a kinds of insects',
+		description: 'it is a kind of insect',
 		picture: '/images/butterfly.jpg',
 		id: 1,
 	},
 	{
-		title: 'butterfly',
-		description: 'it is a kinds of insects',
-		picture: '/images/butterfly.jpg',
+		title: 'Dark',
+		description: 'I feell good in dark environments!',
+		picture: '/images/dark.jpg',
 		id: 2,
 	},
 ];
@@ -67,14 +71,17 @@ app.get('/new-post', (req, res) => {
 
 // Sending New Post :
 app.post('/submit', upload.single('img'), (req, res) => {
-	const { title, description, picture } = req.body;
+	const { title, description } = req.body;
+	const pic_path = req.file.path;
+	const imageReplacement = pic_path.replace('public\\', '');
 
 	let newPost = {
 		id: posts.length + 1,
 		title: title,
 		description: description,
-		picture: picture,
+		picture: imageReplacement,
 	};
+
 	posts.push(newPost);
 	res.render('index.ejs', {
 		post: posts,
@@ -84,10 +91,13 @@ app.post('/submit', upload.single('img'), (req, res) => {
 });
 
 // Editing Post:
-app.get('/edit/:id', (req, res) => {
+app.get('/edit/:id', upload.single('image'), (req, res) => {
 	const postId = parseInt(req.params.id);
 	const post = posts.find((p) => p.id === postId);
 
+	if (!post) {
+		return res.status(404).send('Post not Found');
+	}
 	res.render('edit', {
 		post: post,
 		Year: year,
@@ -95,27 +105,36 @@ app.get('/edit/:id', (req, res) => {
 });
 
 // sending edited post to the home page:
-app.post('/edit/:id',upload.single('image') ,(req, res) => {
+app.put('/update/:id',upload.single('image'), (req, res) => {
 	const postId = parseInt(req.params.id);
-	const updatedPostIndex = posts.findIndex((p) => p.id === postId);
+	const updatedPostIndex = posts.findIndex((p) => p.id == postId);
+
 	
+	const pic_path = req.file.path;
+	const imageReplacement = pic_path.replace('public\\', '');
+
 	if (updatedPostIndex === -1) {
-		return res.status(404).send('post not found')
+		return res.status(404).send('post not found');
 	}
 	let updatedPost = {
-        id: postId,
-        title: req.body.title,
-        description: req.body.description,
+		id: postId,
+		title: req.body.title,
+		description: req.body.description,
+		picture:imageReplacement
 	};
-	
+
 	posts[updatedPostIndex] = updatedPost;
-    res.redirect('/');
+	res.redirect('/');
 });
 
 //Deleting Post:
-app.post('/delete/:id', (req, res) => {
+app.delete('/delete/:id', (req, res) => {
 	const postId = parseInt(req.params.id);
-	posts = posts.filter((post) => post.id !== postId);
+	posts = posts.filter((post) => {
+		if (post.id !== postId) {
+			return post;
+		}
+	});
 	res.redirect('/');
 });
 
