@@ -1,5 +1,6 @@
 <%- include('partials/header.ejs') %>
 <link rel="stylesheet" href="/css/fonts/font.css" />
+<script src="../js/script.js"></script>
 <h3 class="title-post">RECENT POSTS</h3>
 <main>
 	<ul>
@@ -22,7 +23,7 @@
 					</form>
 					<!-- <a class="edit" href="/edit/" >Edit</a> -->
 
-					<form class="form" action="/delete/<%= element.id %>?_method=DELETE" method="POST">
+					<form class="form" onclick="confirmDelete()" action="/delete/<%= element.id %>?_method=DELETE" method="POST">
 						<button class="delete" id="delete">Delete</button>
 					</form>
 				</div>

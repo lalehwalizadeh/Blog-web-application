@@ -6,6 +6,7 @@ import multer from 'multer';
 import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { ok } from 'assert';
 
 const directory = dirname(fileURLToPath(import.meta.url));
 
@@ -105,11 +106,10 @@ app.get('/edit/:id', upload.single('image'), (req, res) => {
 });
 
 // sending edited post to the home page:
-app.put('/update/:id',upload.single('image'), (req, res) => {
+app.put('/update/:id', upload.single('image'), (req, res) => {
 	const postId = parseInt(req.params.id);
 	const updatedPostIndex = posts.findIndex((p) => p.id == postId);
 
-	
 	const pic_path = req.file.path;
 	const imageReplacement = pic_path.replace('public\\', '');
 
@@ -120,22 +120,26 @@ app.put('/update/:id',upload.single('image'), (req, res) => {
 		id: postId,
 		title: req.body.title,
 		description: req.body.description,
-		picture:imageReplacement
+		picture: imageReplacement,
 	};
 
 	posts[updatedPostIndex] = updatedPost;
 	res.redirect('/');
 });
 
+
+
 //Deleting Post:
 app.delete('/delete/:id', (req, res) => {
 	const postId = parseInt(req.params.id);
-	posts = posts.filter((post) => {
-		if (post.id !== postId) {
-			return post;
-		}
-	});
-	res.redirect('/');
+	if (confirmDelete()) {
+		posts = posts.filter((post) => post.id !== postId);
+		res.send('<h1>post delete successfuly</h1>');
+		res.redirect('/')
+	} else {
+		res.send('<h1>deleting post was canceled</h1>')
+		res.redirect('/')
+	}
 });
 
 // Start the server :
