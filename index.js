@@ -50,7 +50,7 @@ let posts = [
   },
   {
     title: "Dark",
-    description: "I feell good in dark environments!",
+    description: "I feel good in dark environments!",
     picture: "/images/dark.jpg",
     id: 2,
   },
@@ -136,7 +136,8 @@ app.delete("/delete/:id", (req, res) => {
   if (confirmation === "true") {
     // If confirmed, delete the post
     posts = posts.filter((post) => post.id !== postId)
-    res.send("<h1>Post deleted successfully</h1>")
+    // res.send("<h1>Post deleted successfully</h1>")
+
   } else {
     // If not confirmed, send a message indicating deletion was canceled
     res.send("<h1>Deletion canceled</h1>")

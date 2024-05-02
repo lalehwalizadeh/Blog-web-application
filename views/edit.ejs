@@ -35,19 +35,18 @@
 		reader.readAsDataURL(fileInput.files[0]);
 	  }
 	}
-	// showing notification
+	//  notifications
 
 const notifMsg= setTimeout(()=>{
 		const notification = document.getElementById('update-notif');
 		const successMessage = 'updated';
 
 		if(notification){
-notif.style.display = "block";
-notification.innerText = successMessage;
-
+            notif.style.display = "block";
+            notification.innerText = successMessage;
 
 setTimeout(()=>{
-	notif.style.display='none';
+ notif.style.display='none';
 } ,5000);
 		}
 	},1000);
