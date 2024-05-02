@@ -1,6 +1,4 @@
 <%- include('partials/header.ejs') %>
-<link rel="stylesheet" href="/css/fonts/font.css" />
-<script src="../js/script.js"></script>
 <h3 class="title-post">RECENT POSTS</h3>
 <main>
 	<ul>
@@ -10,20 +8,23 @@
 				<h2><%= element.title %></h2>
 				<p><%= element.description %></p>
 				<div class="imeg">
-					
 					<% if(element.picture){ %>
 					<img src=" <%=element.picture %>" alt="picture" />
 					<% }else{ %>
 					<img src="/images/placeholder.jpg" alt="picture" />
 					<% } %>
 				</div>
-				<div class="content">
+
+				<div class="content-btn">
 					<form class="form" action="/edit/<%= element.id %>" method="GET">
 						<button class="edit">Edit</button>
 					</form>
-					<!-- <a class="edit" href="/edit/" >Edit</a> -->
 
-					<form class="form" onclick="confirmDelete()" action="/delete/<%= element.id %>?_method=DELETE" method="POST">
+					<form
+						class="form"
+						onclick="confirmDelete()"
+						action="/delete/<%= element.id %>?_method=DELETE"
+						method="POST">
 						<button class="delete" id="delete">Delete</button>
 					</form>
 				</div>
@@ -39,6 +40,7 @@
 		</div>
 		<% } %>
 	</ul>
+
 </main>
 
 <%- include('partials/footer.ejs') %>

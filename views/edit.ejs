@@ -2,6 +2,7 @@
 
 <%- include('partials/header.ejs') %>
 <div class="content">
+
 	<form class="new-form" action="/update/<%= post.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 	 
 		<label for="tit">Change Title:</label>
@@ -9,9 +10,9 @@
 		<label for="dec">Change Description:</label>
 		<textarea class="inp" name="description" id="dec" value="" required><%=post.description %></textarea>
 		<label for="file">Change Image:
-			<input class="inp-img" type="file" onchange="display()" id="fileImage" name="image" accept="img/*">
+			<input class="inp-img" type="file" onchange="display()" id="fileImage" value="<%= post.picture %>" name="image" accept="img/*" required>
 			<div class="imeg">
-				<img  id="pic" src="<%=post.picture %>"  alt="your current Image"></img>
+				<img  id="pic" src="../<%=post.picture %>"  alt="your current Image"></img>
 			</div>
 		</label>
 		<button type="submit" class="btn">Update</button>
@@ -34,7 +35,22 @@
 		reader.readAsDataURL(fileInput.files[0]);
 	  }
 	}
-	
+	// showing notification
+
+const notifMsg= setTimeout(()=>{
+		const notification = document.getElementById('update-notif');
+		const successMessage = 'updated';
+
+		if(notification){
+notif.style.display = "block";
+notification.innerText = successMessage;
+
+
+setTimeout(()=>{
+	notif.style.display='none';
+} ,5000);
+		}
+	},1000);
   </script>
 
 

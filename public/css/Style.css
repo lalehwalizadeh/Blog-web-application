@@ -4,12 +4,12 @@
 	box-sizing: border-box;
 }
 
-/* @import url('https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap');
 
 body {
-	font-family: 'Lugrasimo', cursive;
+	font-family: 'Lugrasimo', Arial, Helvetica, sans-serif;
 	font-weight: 400;
-	background: url('../images/blue-2.jpg') repeat;
+	background: url('../images/blue-3.jpg') repeat;
 	z-index: -1;
 }
 /* body::before{
@@ -22,19 +22,27 @@ body {
 	background: rgba(0,0,0,0.5);
 
  } */
- /* @media screen and (min-width:768px) {
-	.content{
-		display: inline-flex;
-	}
+
 	
- } */
+ 
 .content {
-	font-family: 'Lugrasimo', cursive;
 	font-weight: 400;
-	box-shadow: #333;
-	color: #fff;
+	color: #0b2237;
 	border-radius: 10px;
 	border: 1.5px solid #0b2237;
+	margin: 1rem 1.5rem 5rem 1.5rem;
+	padding: 1.5rem;
+	box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
+		5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(40px);
+
+}
+
+ 
+.content-btn {
+	
+	
+	border-top: 1.5px solid #0b2237;
 	margin: 5rem 1.5rem 1rem 1.5rem;
 	padding: 1.5rem;
 	box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
@@ -44,6 +52,7 @@ body {
     backdrop-filter: blur(35px);
 
 }
+
 
 h3 {
 	line-height: 3rem;

@@ -6,8 +6,6 @@ import multer from 'multer';
 import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { ok } from 'assert';
-
 const directory = dirname(fileURLToPath(import.meta.url));
 
 // Set EJS as the view engine
@@ -50,7 +48,7 @@ let posts = [
 	},
 	{
 		title: 'Dark',
-		description: 'I feell good in dark environments!',
+		description: 'I feel good in dark environments!',
 		picture: '/images/dark.jpg',
 		id: 2,
 	},
@@ -115,16 +113,19 @@ app.put('/update/:id', upload.single('image'), (req, res) => {
 
 	if (updatedPostIndex === -1) {
 		return res.status(404).send('post not found');
+	} else {
+		
+		let updatedPost = {
+			id: postId,
+			title: req.body.title,
+			description: req.body.description,
+			picture: imageReplacement,
+		};
+		posts[updatedPostIndex] = updatedPost;
 	}
-	let updatedPost = {
-		id: postId,
-		title: req.body.title,
-		description: req.body.description,
-		picture: imageReplacement,
-	};
+	res.render('index',{successMessage});
+	
 
-	posts[updatedPostIndex] = updatedPost;
-	res.redirect('/');
 });
 
 
@@ -132,7 +133,10 @@ app.put('/update/:id', upload.single('image'), (req, res) => {
 //Deleting Post:
 app.delete('/delete/:id', (req, res) => {
 	const postId = parseInt(req.params.id);
-	if (confirmDelete()) {
+
+	
+	//
+	if (ConfirmDelete()) {
 		posts = posts.filter((post) => post.id !== postId);
 		res.send('<h1>post delete successfuly</h1>');
 		res.redirect('/')

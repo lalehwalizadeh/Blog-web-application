@@ -62,3 +62,45 @@ img {
 	border-radius: 5px;
 	margin-top: 30px ;
 }
+
+/* notifications */
+.success{
+	display: none;
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	padding: 10px;
+	background-color: cornflowerblue;
+	color: #0b2237;
+	border: #0b2237 1px solid;
+	border-radius: 5px;
+	animation: slide-in 2s forwards;
+}
+@keyframes slide-in{
+	0%{
+		transform: translateX(100%);
+	}
+	100%{
+		transform: translateX(0);
+	}
+}
+
+.remove{
+	display: none;
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	padding: 10px;
+	background-color: red;
+	color: white;
+	border-radius: 5px;
+	animation: slide 2s forwards;
+}
+@keyframes slide{
+	0%{
+		transform: translateX(100%);
+	}
+	100%{
+		transform: translateX(1);
+	}
+}
