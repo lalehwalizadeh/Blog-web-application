@@ -1,46 +1,68 @@
 <%- include('partials/header.ejs') %>
 <h3 class="title-post">RECENT POSTS</h3>
 <main>
-	<ul>
-		<% if(post.length >0){ post.forEach((element) => { %>
-		<div class="content">
-			<li>
-				<h2><%= element.title %></h2>
-				<p><%= element.description %></p>
-				<div class="imeg">
-					<% if(element.picture){ %>
-					<img src=" <%=element.picture %>" alt="picture" />
-					<% }else{ %>
-					<img src="/images/placeholder.jpg" alt="picture" />
-					<% } %>
-				</div>
+  <ul>
+    <% if(post.length >0){ post.forEach((element) => { %>
+    <div class="content">
+      <li>
+        <h2><%= element.title %></h2>
+        <p><%= element.description %></p>
+        <div class="imeg">
+          <% if(element.picture){ %>
+          <img src=" <%=element.picture %>" alt="picture" />
+          <% }else{ %>
+          <img src="/images/placeholder.jpg" alt="picture" />
+          <% } %>
+        </div>
+        <div class="content-btn">
+          <form class="form" action="/edit/<%= element.id %>" method="GET">
+            <button class="edit">Edit</button>
+          </form>
+          <!-- <a class="edit" href="/edit/" >Edit</a> -->
 
-				<div class="content-btn">
-					<form class="form" action="/edit/<%= element.id %>" method="GET">
-						<button class="edit">Edit</button>
-					</form>
+          <form
+            class="form"
+            onsubmit="return confirmDelete()"
+            action="/delete/<%= element.id %>?_method=DELETE"
+            method="POST"
+          >
+            <input
+              type="hidden"
+              id="confirmation"
+              name="confirmation"
+              value=""
+            />
 
-					<form
-						class="form"
-						onclick="confirmDelete()"
-						action="/delete/<%= element.id %>?_method=DELETE"
-						method="POST">
-						<button class="delete" id="delete">Delete</button>
-					</form>
-				</div>
-			</li>
-		</div>
+            <button class="delete" id="delete">Delete</button>
+          </form>
+        </div>
+      </li>
+    </div>
 
-		<% }); }else{ %>
-		<div class="content">
-			<div class="head">
-				Create
-				<li><a href="/new-post">New Post</a></li>
-			</div>
-		</div>
-		<% } %>
-	</ul>
-
+    <% }); }else{ %>
+    <div class="content">
+      <div class="head">
+        Create
+        <li><a href="/new-post">New Post</a></li>
+      </div>
+    </div>
+    <% } %>
+  </ul>
 </main>
 
 <%- include('partials/footer.ejs') %>
+
+<script>
+  function confirmDelete() {
+    // Prompt user for confirmation
+    const confirmation = confirm("Are you sure you want to delete this post?")
+
+    // Set value of hidden input field based on confirmation
+    document.getElementById("confirmation").value = confirmation
+      ? "true"
+      : "false"
+
+    // Return true to submit the form if confirmed, false otherwise
+    return confirmation
+  }
+</script>
