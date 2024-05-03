@@ -2,6 +2,7 @@
 <h3 class="title-post">RECENT POSTS</h3>
 <main>
   <ul>
+    
     <% if(post.length >0){ post.forEach((element) => { %>
     <div class="content">
       <li>
@@ -47,6 +48,8 @@
     </div>
     <% } %>
   </ul>
+  <div id="update-notif" class="success"></div>
+  <div id="delete-notif" class="remove"></div>
 </main>
 
 <%- include('partials/footer.ejs') %>
@@ -58,8 +61,23 @@
 
     // Set value of hidden input field based on confirmation
     document.getElementById("confirmation").value = confirmation
-      ? "true"
-      : "false"
+      ? true
+      : false
+
+      // Deleting Notification:
+//       setTimeout(()=>{
+//       const notification =document.getElementById('delete-notif');
+// 		const deleteMessage = 'Post deleted successfully!';
+
+//     if(notification){
+//             remove.style.display = "block";
+//             notification.innerText = deleteMessage;
+
+// setTimeout(()=>{
+//  remove.style.display='none';
+// } ,5000);
+// 		}
+// 	},1000);
 
     // Return true to submit the form if confirmed, false otherwise
     return confirmation
