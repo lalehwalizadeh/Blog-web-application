@@ -19,22 +19,19 @@
           <form class="form" action="/edit/<%= element.id %>" method="GET">
             <button class="edit">Edit</button>
           </form>
-
           <form
-            class="form"
-            onsubmit="return confirmDelete()"
-            action="/delete/<%= element.id %>?_method=DELETE"
-            method="POST"
-          >
-            <input
-              type="hidden"
-              id="confirmation"
-              name="confirmation"
-              value=""
-            />
-
-            <button class="delete" id="delete">Delete</button>
-          </form>
+          class="form"
+          onsubmit="return confirmDelete()"
+          action="/delete/<%= element.id %>"
+          method="POST"
+        >
+          <input type="hidden" name="_method" value="DELETE" />
+          <input type="hidden" id="confirmation" name="confirmation" value="" />
+          <button class="delete" id="delete">Delete</button>
+        </form>
+        
+        
+ 
         </div>
       </li>
     </div>
