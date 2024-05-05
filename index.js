@@ -15,9 +15,9 @@ const PORT = 3000
 app.set("view engine", "ejs")
 // middlewares:
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static("public"));
+app.use(express.static("public"))
 // use method-override to use HTTP method instead of GET and POST:
-app.use(methodOverride("_method"));
+app.use(methodOverride("_method"))
 
 // parse JSON bodies (as sent by html form)
 app.use(bodyParser.json())
@@ -139,17 +139,27 @@ app.put("/update/:id", upload.single("image"), (req, res) => {
 })
 
  
+app.post('/action', (req, res) => {
+  const postId = parseInt(req.body.postId);
+  const action = req.body.action;
 
-// Deleting Post
-app.post("/delete/:id", (req, res) => {
-  const postId = parseInt(req.params.id);
-  
-  posts = posts.filter((post) => post.id !== postId);
-
-    res.redirect("/");
- 
+  // Handle the action accordingly
+  if (action === 'edit') {
+      // Redirect to the edit route
+      res.redirect(`/edit/${postId}`);
+  } else if (action === 'delete') {
+      // Find the index of the post in the posts array
+      const postIndex = posts.findIndex(post => post.id === postId);
+      // If post not found, return 404 error
+      if (postIndex === -1) {
+          return res.status(404).send('Post not found');
+      }
+      // Remove the post from the posts array
+      posts.splice(postIndex, 1);
+      // Redirect back to the home page
+      res.redirect('/?message=Post deleted successfully&type=error');
+      }
 });
-
 
 // Start the server :
 app.listen(PORT, () => {

@@ -1,7 +1,7 @@
 <%- include('partials/header.ejs') %>
 <h3 class="title-post">RECENT POSTS</h3>
 <main>
-  <ul class="light">
+  <ul>
     
     <% if(post.length >0){ post.forEach((element) => { %>
     <div class="content">
@@ -16,20 +16,28 @@
           <% } %>
         </div>
         <div class="content-btn">
-          <form class="form" action="/edit/<%= element.id %>" method="GET">
-            <button class="edit">Edit</button>
+          <form action="/action" method="post">
+            <input type="hidden" name="postId" value="<%= element.id %>" />
+            <button
+              type="submit"
+              name="action"
+              value="edit"
+              class="action_button edit"
+              id="edit_button"
+            >
+              Edit
+            </button>
+            <button
+              type="submit"
+              name="action"
+              value="delete"
+              class="action_button delete"
+              id="delete_button"
+              onclick="return confirm('Are you sure you want to delete this post?');"
+            >
+              Delete
+            </button>
           </form>
-          <form
-          class="form"
-          onsubmit="return confirmDelete()"
-          action="/delete/<%= element.id %>"
-          method="POST"
-        >
-          <button type="submit" class="delete" id="delete">Delete</button>
-        </form>
-        
-        
- 
         </div>
       </li>
     </div>
@@ -49,29 +57,4 @@
 
 <%- include('partials/footer.ejs') %>
 
-<script>
-  function confirmDelete() {
-    // Prompt user for confirmation
-    const confirmation = confirm("Are you sure you want to delete this post?")
-
-  
-
-      // Deleting Notification:
-//       setTimeout(()=>{
-//       const notification =document.getElementById('delete-notif');
-// 		const deleteMessage = 'Post deleted successfully!';
-
-//     if(notification){
-//             remove.style.display = "block";
-//             notification.innerText = deleteMessage;
-
-// setTimeout(()=>{
-//  remove.style.display='none';
-// } ,5000);
-// 		}
-// 	},1000);
-
-    // Return true to submit the form if confirmed, false otherwise
-    return confirmation;
-  }
-</script>
+ 
