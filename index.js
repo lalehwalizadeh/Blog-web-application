@@ -145,7 +145,7 @@ app.post("/delete/:id", (req, res) => {
   const postId = parseInt(req.params.id);
   
   posts = posts.filter((post) => post.id !== postId);
- 
+
     res.redirect("/");
  
 });
