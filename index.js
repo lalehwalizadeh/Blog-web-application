@@ -143,21 +143,13 @@ app.put("/update/:id", upload.single("image"), (req, res) => {
 // Deleting Post
 app.post("/delete/:id", (req, res) => {
   const postId = parseInt(req.params.id);
-  // Get the confirmation status from the request body
-  const confirmation = req.body.confirmation;
-  console.log(req.body); // Check the entire request body for debugging
   
-  if (confirmation === "true") {
-    // If confirmed, delete the post
-    posts = posts.filter((post) => post.id !== postId);
-    // res.send("<h1>Post deleted successfully</h1>")
+  posts = posts.filter((post) => post.id !== postId);
+ 
     res.redirect("/");
-  } else {
-    // If not confirmed, send a message indicating deletion was canceled
-    res.send("<h1>Deletion canceled</h1>")
-    res.redirect("/");
-  }
+ 
 });
+
 
 // Start the server :
 app.listen(PORT, () => {
