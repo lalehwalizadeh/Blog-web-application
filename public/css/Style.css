@@ -9,22 +9,13 @@
 body {
 	font-family: 'Lugrasimo', Arial, Helvetica, sans-serif;
 	font-weight: 400;
-	background: url('../images/blue-3.jpg') repeat;
+	/* background: url('../images/blue-3.jpg') repeat; */
 	z-index: -1;
 }
-/* body::before{
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0,0,0,0.5);
 
- } */
 
-	
- 
+
+
 .content {
 	font-weight: 400;
 	color: #0b2237;

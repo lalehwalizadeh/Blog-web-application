@@ -15,9 +15,9 @@ const PORT = 3000
 app.set("view engine", "ejs")
 // middlewares:
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static("public"))
+app.use(express.static("public"));
 // use method-override to use HTTP method instead of GET and POST:
-app.use(methodOverride("_method"))
+app.use(methodOverride("_method"));
 
 // parse JSON bodies (as sent by html form)
 app.use(bodyParser.json())
@@ -154,7 +154,7 @@ app.post("/delete/:id", (req, res) => {
     res.redirect("/");
   } else {
     // If not confirmed, send a message indicating deletion was canceled
-    // res.send("<h1>Deletion canceled</h1>")
+    res.send("<h1>Deletion canceled</h1>")
     res.redirect("/");
   }
 });
