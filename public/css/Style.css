@@ -8,7 +8,8 @@
 body {
 	font-family: 'Lugrasimo', Arial, Helvetica, sans-serif;
 	font-weight: 400;
-	background: url('../images/blue-3.jpg') repeat;
+	/* background: url('../images/blue-3.jpg') repeat; */
+	background:linear-gradient(to right,#b1d1eeda,#489ff0f2) ;
 	
 }
 
@@ -24,7 +25,7 @@ body {
 	padding: 1.5rem;
 	box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
 		5px 5px 15px 5px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(40px);
+    backdrop-filter: blur(20px);
 
 }
 

@@ -48,28 +48,17 @@ const year = date.getFullYear()
 let posts = [
   {
     title: "butterfly",
-    description: "it is a kind of insect",
+    description: "Buttreflies are facinating creatures symbolizing tranformation, beauty, and tranquility.",
     picture: "/images/butterfly.jpg",
     id: 1,
   },
   {
     title: "Dark",
-    description: "I feel good in dark environments!",
+    description: "The dark night sky envelops the world in a blanket of mystery and intrigue.",
     picture: "/images/dark.jpg",
     id: 2,
   },
-  {
-    title: "butterfly",
-    description: "it is a kind of insect",
-    picture: "/images/butterfly.jpg",
-    id: 3,
-  },
-  {
-    title: "Dark",
-    description: "I feel good in dark environments!",
-    picture: "/images/dark.jpg",
-    id: 4,
-  },
+ 
 ]
 
 // Define routes
