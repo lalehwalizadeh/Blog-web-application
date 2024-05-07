@@ -6,7 +6,9 @@ import multer from "multer"
 import path from "path"
 import { dirname } from "path"
 import { fileURLToPath } from "url"
-import { ok } from "assert"
+
+
+
  const directory = dirname(fileURLToPath(import.meta.url))
 
 // Set EJS as the view engine
@@ -21,6 +23,9 @@ app.use(methodOverride("_method"))
 
 // parse JSON bodies (as sent by html form)
 app.use(bodyParser.json())
+
+
+
 
 // Using multer to uploading image
 const storage = multer.diskStorage({
@@ -136,6 +141,7 @@ app.put("/update/:id", upload.single("image"), (req, res) => {
 
   posts[updatedPostIndex] = updatedPost
   res.redirect("/")
+ 
 })
 
  
@@ -149,7 +155,8 @@ app.post('/action', (req, res) => {
       res.redirect(`/edit/${postId}`);
   } else if (action === 'delete') {
       // Find the index of the post in the posts array
-      const postIndex = posts.findIndex(post => post.id === postId);
+    const postIndex = posts.findIndex(post => post.id === postId);
+    
       // If post not found, return 404 error
       if (postIndex === -1) {
           return res.status(404).send('Post not found');

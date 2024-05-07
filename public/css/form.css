@@ -65,7 +65,7 @@ img {
 
 /* notifications */
 .success{
-	display: none;
+	/* display: none; */
 	position: fixed;
 	top: 60px;
 	right: 20px;
@@ -86,7 +86,7 @@ img {
 }
 
 .remove{
-	display: none;
+	/* display: none; */
 	position: fixed;
 	top: 60px;
 	right: 20px;
