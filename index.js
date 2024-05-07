@@ -1,5 +1,4 @@
 import methodOverride from "method-override"
-
 import express from "express"
 import bodyParser from "body-parser"
 import multer from "multer"
@@ -7,17 +6,18 @@ import path from "path"
 import { dirname } from "path"
 import { fileURLToPath } from "url"
 
-
+const app = express()
+const PORT = 3000
 
  const directory = dirname(fileURLToPath(import.meta.url))
 
 // Set EJS as the view engine
-const app = express()
-const PORT = 3000
 app.set("view engine", "ejs")
-// middlewares:
+
+// middleware:
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("public"))
+
 // use method-override to use HTTP method instead of GET and POST:
 app.use(methodOverride("_method"))
 
@@ -30,7 +30,7 @@ app.use(bodyParser.json())
 // Using multer to uploading image
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/images")
+    cb(null, "public/images/")
   },
   filename: (req, file, cb) => {
     console.log(file)
@@ -63,14 +63,14 @@ let posts = [
 
 // Define routes
 app.get("/", (req, res) => {
-  res.render("index.ejs", {
+  res.render("index", {
     post: posts,
     Year: year,
   })
 })
 
 app.get("/new-post", (req, res) => {
-  res.render("new-post.ejs", {
+  res.render("new-post", {
     Year: year,
   })
 })
@@ -78,18 +78,17 @@ app.get("/new-post", (req, res) => {
 // Sending New Post :
 app.post("/submit", upload.single("img"), (req, res) => {
   const { title, description } = req.body
-  const pic_path = req.file.path
-  const imageReplacement = pic_path.replace("public\\", "")
+  const pic_path = req.file ? "/images/" + req.file.filename : null;
 
   let newPost = {
     id: posts.length + 1,
     title: title,
     description: description,
-    picture: imageReplacement,
+    picture: pic_path,
   }
 
   posts.push(newPost)
-  res.render("index.ejs", {
+  res.render("index", {
     post: posts,
     Year: year,
   })
