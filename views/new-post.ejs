@@ -1,6 +1,6 @@
 <%- include('partials/header.ejs') %>
 
-<div class="content">
+<div class="new-post-form">
 	<form class="new-form" action="/submit" method="POST"  enctype="multipart/form-data">
 		<label for="tit">Title:</label>
 		<input class="inp" type="text" name="title" id="tit" required/>
@@ -17,6 +17,8 @@
 	</form>
 
 </div>
+</main>
+
 <script>
 	function display() {
 		
