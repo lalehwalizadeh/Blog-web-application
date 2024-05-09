@@ -51,10 +51,26 @@
     </div>
     <% } %>
   </ul>
+
+<!--   
+	<div id="update-notif" class="success"> Post updated successfully!</div>
  
- 
-  <div id="delete-notif" class="remove"></div>
+  <div id="delete-notif" class="remove"> Post deleted successfully!</div> -->
 </main>
+
+<script>
+    document.getElementById('update-notif').style.display='block';
+  setTimeout(() => {
+  document.getElementById('update-notif').style.display='none';
+    
+  }, 3000); 
+
+  document.getElementById('delete-notif').style.display='block';
+  setTimeout(() => {
+  document.getElementById('delete-notif').style.display='none';
+    
+  }, 3000); 
+</script>
 
 <%- include('partials/footer.ejs') %>
 
