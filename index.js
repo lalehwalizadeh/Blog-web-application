@@ -78,7 +78,7 @@ let posts = [
 		id: 5,
 	},
 	{
-		title: 'Edge os Madness',
+		title: 'Edge of Madness',
 		description:
 			" 'Edge of Madness' is a gripping psychological thriller that will keep you on the edge of your seat.With its intricate plot twists and complex characters, this book delves into the dark depths of the human mind.  Prepare to be taken on a thrilling journey to the edge of madness in this chilling and suspenseful novel.",
 		picture: '/images/edge of madness.jpg',
