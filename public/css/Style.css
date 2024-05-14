@@ -7,9 +7,7 @@
 body {
 	font-family: 'Lugrasimo', Arial, Helvetica, sans-serif;
 	font-weight: 400;
-	/* background: url('../images/blue-3.jpg') repeat; */
 	background: linear-gradient(to right, #b1d1eeda, #022d551c);
-	/* background: rgb(175, 224, 255); */
 }
 header{
 	position: fixed;
@@ -19,8 +17,6 @@ header{
 .content {
 	font-weight: 400;
 	color: #0b2237;
-	/* color: #fff; */
-	/* background: #0b2237; */
 	border-radius: 10px;
 	border: 1.5px solid #0b2237;
 	margin: 1rem 1.5rem 5rem 1.5rem;
@@ -50,6 +46,7 @@ h2{
 }
 
 /* Header section */
+
 .title-post {
 	display: inline-block;
 	margin-top: 9rem;
@@ -64,7 +61,6 @@ h2{
 	background-color: #0b2237;
 	color: #fff;
 	justify-content: space-between;
-	
 	margin: auto;
 	padding: 15px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -80,9 +76,7 @@ h2{
 	width: 50px;
 	height: 50px;
 	padding: 0;
-	/* border-radius: 50%; */
 	margin-top: 0;
-	/* margin-right: 15px; */
 	
 }
 ul {
